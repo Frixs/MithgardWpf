@@ -1,0 +1,20 @@
+﻿<Window
+    x:Class="MithgardWpf.App.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:MithgardWpf.App"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:nav="clr-namespace:MithgardWpf.App.Core.Navigation.Views"
+    xmlns:viewm="clr-namespace:MithgardWpf.App.Core.ViewModels"
+    Title="MainWindow"
+    Width="800"
+    Height="450"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+    <Grid>
+        <nav:PageHost
+            CurrentPageIdentifier="{Binding App.Navigation.CurrentPageIdentifier, Source={x:Static viewm:ViewModelLocator.Instance}}"
+            CurrentPageViewModel="{Binding App.Navigation.CurrentPageViewModel, Source={x:Static viewm:ViewModelLocator.Instance}}" />
+    </Grid>
+</Window>
