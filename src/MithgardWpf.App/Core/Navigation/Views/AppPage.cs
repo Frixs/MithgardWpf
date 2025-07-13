@@ -59,7 +59,7 @@ public abstract class AppPage : Page
     ///     the page loading normally. However, set this to <see langword='true'/> to trigger 
     ///     the unload animation. Only a page manager handling page transitions should do this.
     /// </summary>
-    public bool IsUnloading { get; set; }
+    public bool IsUnloading { get; set; } = false;
 
     /// <summary>
     ///     Default constructor.
