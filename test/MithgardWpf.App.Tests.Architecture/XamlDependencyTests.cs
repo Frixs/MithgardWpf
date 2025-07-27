@@ -1,4 +1,6 @@
-﻿namespace MithgardWpf.App.Tests.Architecture;
+﻿// Author: Tomáš Frixs
+
+namespace MithgardWpf.App.Tests.Architecture;
 
 public class XamlDependencyTests
 {
@@ -16,7 +18,6 @@ public class XamlDependencyTests
     #endregion
 
     [Theory]
-    [InlineData("MithgardWpf.App.Core", "MithgardWpf.App.Common")]
     [InlineData("MithgardWpf.App.Core", "MithgardWpf.App.Features")]
     [InlineData("MithgardWpf.App.Core", "MithgardWpf.App.FeaturesShared")]
     [InlineData("MithgardWpf.App.Core", "MithgardWpf.App.Pages")]

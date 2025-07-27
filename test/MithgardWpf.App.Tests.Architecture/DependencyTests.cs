@@ -1,4 +1,6 @@
-﻿using MithgardWpf.App.Core.ViewModels;
+﻿// Author: Tomáš Frixs
+
+using MithgardWpf.App.Core.ViewModels;
 using NetArchTest.Rules;
 
 namespace MithgardWpf.App.Tests;
@@ -6,7 +8,6 @@ namespace MithgardWpf.App.Tests;
 public class DependencyTests
 {
     [Theory]
-    [InlineData("MithgardWpf.App.Core", "MithgardWpf.App.Common")]
     [InlineData("MithgardWpf.App.Core", "MithgardWpf.App.Features")]
     [InlineData("MithgardWpf.App.Core", "MithgardWpf.App.FeaturesShared")]
     [InlineData("MithgardWpf.App.Core", "MithgardWpf.App.Pages")]
