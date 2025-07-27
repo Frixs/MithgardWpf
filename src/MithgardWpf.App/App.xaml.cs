@@ -94,13 +94,17 @@ public partial class App : Application
 
     private void Application_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
     {
+        var logger = Services.GetRequiredService<ILogger<App>>();
+        logger.LogCritical(e.Exception.Message);
+
         MessageBox.Show(
             $"An unhandled exception just occurred: {e.Exception.Message}." +
-            $"{Environment.NewLine}Please, contact the developers to fix the issue.", 
-            "Fatal Error", 
+            $"{Environment.NewLine}Please, contact the developers to fix the issue.",
+            "Unexpected Error", 
             MessageBoxButton.OK, 
             MessageBoxImage.Warning
         );
+
         e.Handled = true;
     }
 
