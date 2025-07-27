@@ -193,8 +193,7 @@ public abstract class AppPage<TViewModel> : AppPage
         // Otherwise, get the view model from the provider.
         else
         {
-            // To make sure, the view model is not null, use the blank one as the fallback value.
-            ViewModel = _viewModelProvider.Get<TViewModel>() ?? new TViewModel();
+            ViewModel = _viewModelProvider.GetRequired<TViewModel>();
         }
     }
 

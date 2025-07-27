@@ -40,11 +40,11 @@ internal sealed class NavigationService : ObservableObject, INavigationService
     public void NavigateTo(string pageIdentifier)
     {
         // If the new page differs from the current page ...
-        if (CurrentPageIdentifier != pageIdentifier)
-        {
-            // Switch page
-            SwitchPage(pageIdentifier, null);
-        }
+        if (CurrentPageIdentifier == pageIdentifier)
+            return;
+
+        // Switch page
+        SwitchPage(pageIdentifier, null);
     }
 
     /// <inheritdoc />
@@ -52,15 +52,15 @@ internal sealed class NavigationService : ObservableObject, INavigationService
         where TViewModel : IPageViewModel
     {
         // If the new page differs from the current page ...
-        if (CurrentPageIdentifier != pageIdentifier)
-        {
-            // Prepare the view model to be used explicitly for the new page.
-            TViewModel pageViewModel = _viewModelProvider.GetRequired<TViewModel>();
-            initViewModelAction.Invoke(pageViewModel);
+        if (CurrentPageIdentifier == pageIdentifier)
+            return;
 
-            // Switch page
-            SwitchPage(pageIdentifier, pageViewModel);
-        }
+        // Prepare the view model to be used explicitly for the new page.
+        TViewModel pageViewModel = _viewModelProvider.GetRequired<TViewModel>();
+        initViewModelAction.Invoke(pageViewModel);
+
+        // Switch page
+        SwitchPage(pageIdentifier, pageViewModel);
     }
 
     /// <summary>
