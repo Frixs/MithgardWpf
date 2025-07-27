@@ -22,8 +22,18 @@ public class DependencyTests : IDisposable
         // ITestOutputHelper, IAsyncLifetime
     }
 
-    [Fact]
-    public void Common_ShouldNotDependOnCore()
+    [Theory]
+    [InlineData("MithgardWpf.App.Core", "MithgardWpf.App.Common")]
+    [InlineData("MithgardWpf.App.Core", "MithgardWpf.App.Features")]
+    [InlineData("MithgardWpf.App.Core", "MithgardWpf.App.FeaturesShared")]
+    [InlineData("MithgardWpf.App.Core", "MithgardWpf.App.Pages")]
+    [InlineData("MithgardWpf.App.Common", "MithgardWpf.App.Features")]
+    [InlineData("MithgardWpf.App.Common", "MithgardWpf.App.FeaturesShared")]
+    [InlineData("MithgardWpf.App.Common", "MithgardWpf.App.Pages")]
+    [InlineData("MithgardWpf.App.Features", "MithgardWpf.App.FeaturesShared")]
+    [InlineData("MithgardWpf.App.Features", "MithgardWpf.App.Pages")]
+    [InlineData("MithgardWpf.App.FeaturesShared", "MithgardWpf.App.Pages")]
+    public void Namespace_ShouldNotDependOnNamespace(string resideNamespace, string forbiddenNamespace)
     {
         // Arrange
 
@@ -31,12 +41,12 @@ public class DependencyTests : IDisposable
         var result = Types
             .InAssembly(typeof(AppViewModel).Assembly)
             .That()
-            .ResideInNamespace("MithgardWpf.App.Core")
+            .ResideInNamespace(resideNamespace)
             .ShouldNot()
-            .HaveDependencyOn("MithgardWpf.App.Common")
+            .HaveDependencyOn(forbiddenNamespace)
             .GetResult();
 
         // Assert
-        Assert.True(result.IsSuccessful, "These classes in Core reference Common:\n" + string.Join("\n", result.FailingTypeNames));
+        Assert.True(result.IsSuccessful, $"Dependency on {forbiddenNamespace} should not exist in:\n" + string.Join("\n", result.FailingTypeNames ?? []));
     }
 }
