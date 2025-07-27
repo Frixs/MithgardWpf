@@ -4,12 +4,16 @@ public class XamlDependencyTests
 {
     private readonly string _projectRootPath;
 
+    #region Setup & Teardown
+
     // Setup goes here
     public XamlDependencyTests()
     {
         string projectNamespace = "MithgardWpf.App";
         _projectRootPath = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), $"..\\..\\..\\..\\..\\src\\{projectNamespace}"));
     }
+
+    #endregion
 
     [Theory]
     [InlineData("MithgardWpf.App.Core", "MithgardWpf.App.Common")]

@@ -1,27 +1,10 @@
 ﻿using MithgardWpf.App.Core.ViewModels;
 using NetArchTest.Rules;
-using Xunit.Abstractions;
 
 namespace MithgardWpf.App.Tests;
 
-public class DependencyTests : IDisposable
+public class DependencyTests
 {
-    private readonly ITestOutputHelper _output;
-
-    // Setup goes here
-    public DependencyTests(ITestOutputHelper outputHelper)
-    {
-        _output = outputHelper;
-    }
-
-    // Teardown goes here
-    public void Dispose()
-    {
-        // TODO https://www.milanjovanovic.tech/blog/enforcing-software-architecture-with-architecture-tests
-        // Add_ShouldAddTwoNumbers_WhenTwoNumbersAreIntegers()
-        // ITestOutputHelper, IAsyncLifetime
-    }
-
     [Theory]
     [InlineData("MithgardWpf.App.Core", "MithgardWpf.App.Common")]
     [InlineData("MithgardWpf.App.Core", "MithgardWpf.App.Features")]
