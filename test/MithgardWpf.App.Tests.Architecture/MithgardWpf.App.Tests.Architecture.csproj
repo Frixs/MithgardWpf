@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MithgardWpf.App\MithgardWpf.App.csproj" />
+    <ProjectReference Include="..\..\src\MithgardWpf.App\MithgardWpf.App.csproj" />
   </ItemGroup>
 
   <ItemGroup>
