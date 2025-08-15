@@ -3,7 +3,6 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using MithgardWpf.App.Core.Navigation.Abstractions;
 using MithgardWpf.App.Core.ViewModels.Abstractions;
-using MithgardWpf.App.Pages.Home;
 
 namespace MithgardWpf.App.Core.Navigation;
 
@@ -33,7 +32,7 @@ internal sealed class NavigationService : ObservableObject, INavigationService
         _viewModelProvider = viewModelProvider ?? throw new ArgumentNullException(nameof(viewModelProvider));
 
         // Default page to switch to when no page is specified.
-        CurrentPageIdentifier = HomePageViewModel.PageIdentifier;
+        CurrentPageIdentifier = AppPageIdentifier.Home.ToString();
     }
 
     /// <inheritdoc />

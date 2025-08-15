@@ -3,7 +3,7 @@
 using MithgardWpf.App.Core.ViewModels;
 using NetArchTest.Rules;
 
-namespace MithgardWpf.App.Tests;
+namespace MithgardWpf.App.Tests.Architecture;
 
 public class DependencyTests
 {
