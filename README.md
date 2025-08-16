@@ -9,11 +9,11 @@
 <div align="center">
 
 [![Build](https://github.com/Frixs/MithgardWpf/actions/workflows/dotnet-desktop-tests.yml/badge.svg)](https://github.com/Frixs/MithgardWpf/actions/workflows/dotnet-desktop-tests.yml) 
-![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/Frixs/MithgardWpf?color=blue)
+![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/Frixs/MithgardWpf?color=blue) 
+[![GitHub license](https://img.shields.io/github/license/Frixs/MithgardWpf?color=brightgreen)](https://github.com/Frixs/MithgardWpf/blob/main/LICENSE) 
 
 [![GitHub Stars](https://img.shields.io/github/stars/Frixs/MithgardWpf.svg)](https://github.com/Frixs/MithgardWpf/stargazers) 
 [![GitHub Forks](https://img.shields.io/github/forks/Frixs/MithgardWpf.svg)](https://github.com/Frixs/MithgardWpf/network/members) 
-[![GitHub license](https://img.shields.io/github/license/Frixs/MithgardWpf?color=brightgreen)](https://github.com/Frixs/MithgardWpf/blob/main/LICENSE) 
 
 </div>
 
@@ -53,7 +53,45 @@ In this project, we combine both approaches. VSA defines the main folder structu
 This structure also supports [Screaming Architecture](https://www.milanjovanovic.tech/blog/screaming-architecture), which emphasizes clear, self-explanatory code organization. Using these approaches altogether is strongly recommended in this project, as it makes the code easier to maintain and more readable for any kind of development.
 
 ## Getting Started
-TODO
+Are you interested in using it? Great! There’s no installation required. To use this template, you have a couple of options:
+
+1. **GitHub template**: You can create a new repository directly from this one. Look for the "Use this template" button at the top of this repository’s page.
+2. **Manual download**: Download the code from the `main` branch (or the latest tag) and start your project using this codebase.
+
+### Solution & Project Structure
+The project repository follows a standard structure:
+- `/src` contains the implementation.
+- `/test` contains the test projects for the implementation.
+
+The main project is organized into several primary folders:
+- `Common`
+- `Core`
+- `Features`
+- `FeaturesShared`
+- `Pages`
+
+Let's discuss each folder separately into more detail.
+
+#### Common
+Holds shared utilities, helper functions, converters, attached properties, and extensions that can be used across the entire project.
+
+#### Core
+This folder contains the truly fundamental parts of the project. In this project, `Core` folder is where we define the essential functionality specific to the project, such as base classes for MVVM, core services, and critical features like page navigation or animations. 
+
+Do not confuse this with the "Core" or "Domain" layer in Clean Architecture. Unlike a pure domain layer, it does not need to be [POCO](https://en.wikipedia.org/wiki/Plain_old_CLR_object). The `Core` folder depends on `Common`, since `Common` provides the shared codebase that can also be used inside the core features of the project.
+
+#### Features
+Encapsulates functionality around specific business capabilities. Each feature is self-contained and usually follows a modular structure (e.g., data access, services, UI components related to that feature). Architecture within the feature is independent of the project.
+
+#### FeaturesShared
+Provides shared feature-level components, logic, or resources that are reused by multiple features.
+
+TODO - requires to reevaluate dependency and write doc about it here
+
+#### Pages
+Defines the UI pages or views, typically composed of features and shared components, representing user-facing application screens.
+
+In this project, pages are defined using the [`AppPage`](src/MithgardWpf.App/Core/Navigation/Views/AppPage.cs) class, which inherits from `System.Windows.Controls.Page`. It acts as the base for all WPF pages in the project. This is required in order to use the navigation logic implemented in this project.
 
 ## Acknowledgements
 I have built my knowledge through years of dedicated practice and learning. Along the way, I have been inspired by many talented developers and innovative projects. Below are the most influential sources that helped shape my skills in C# regarding this project.
