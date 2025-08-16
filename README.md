@@ -53,7 +53,7 @@ In this project, we combine both approaches. VSA defines the main folder structu
 This structure also supports [Screaming Architecture](https://www.milanjovanovic.tech/blog/screaming-architecture), which emphasizes clear, self-explanatory code organization. Using these approaches altogether is strongly recommended in this project, as it makes the code easier to maintain and more readable for any kind of development.
 
 ## Getting Started
-Are you interested in using it? Great! There’s no installation required. To use this template, you have a couple of options:
+Are you interested in using it? Great! There’s no installation required. The only thing you have to do is to rename the namespace to your liking. To use this template, you have a couple of options:
 
 1. **GitHub template**: You can create a new repository directly from this one. Look for the "Use this template" button at the top of this repository’s page.
 2. **Manual download**: Download the code from the `main` branch (or the latest tag) and start your project using this codebase.
