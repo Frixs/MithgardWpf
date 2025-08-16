@@ -1,9 +1,8 @@
 ﻿// Author: Tomáš Frixs
 
-using MithgardWpf.App.Core.Navigation.Abstractions;
-using MithgardWpf.App.Pages.Home;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using MithgardWpf.App.Core.Navigation.Abstractions;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
@@ -94,7 +93,7 @@ public partial class PageHost : UserControl
         // If we are in design mode, we can just use a blank instance of the view model.
         if (DesignerProperties.GetIsInDesignMode(this))
         {
-            CurrentPage.Content = _pageMapper.GetNewPageView(HomePageViewModel.PageIdentifier);
+            CurrentPage.Content = _pageMapper.GetNewPageView(AppPageIdentifier.Home.ToString());
         }
     }
 

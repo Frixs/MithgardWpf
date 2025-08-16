@@ -59,7 +59,7 @@ public abstract class AppPage : Page
     ///     the page loading normally. However, set this to <see langword='true'/> to trigger 
     ///     the unload animation. Only a page manager handling page transitions should do this.
     /// </summary>
-    public bool IsUnloading { get; set; }
+    public bool IsUnloading { get; set; } = false;
 
     /// <summary>
     ///     Default constructor.
@@ -193,8 +193,7 @@ public abstract class AppPage<TViewModel> : AppPage
         // Otherwise, get the view model from the provider.
         else
         {
-            // To make sure, the view model is not null, use the blank one as the fallback value.
-            ViewModel = _viewModelProvider.Get<TViewModel>() ?? new TViewModel();
+            ViewModel = _viewModelProvider.GetRequired<TViewModel>();
         }
     }
 

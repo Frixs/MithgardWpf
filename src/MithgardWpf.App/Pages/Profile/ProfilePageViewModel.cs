@@ -34,7 +34,7 @@ public partial class ProfilePageViewModel : ObservableViewModel, IPageViewModel
     }
 
     /// <summary>
-    ///     DI-specific consntructor.
+    ///     DI-specific constructor.
     /// </summary>
     /// <param name="navigation">Navigation too be able to navigate between app's pages.</param>
     /// <exception cref="ArgumentNullException"></exception>

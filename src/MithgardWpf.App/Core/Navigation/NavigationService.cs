@@ -3,7 +3,6 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using MithgardWpf.App.Core.Navigation.Abstractions;
 using MithgardWpf.App.Core.ViewModels.Abstractions;
-using MithgardWpf.App.Pages.Home;
 
 namespace MithgardWpf.App.Core.Navigation;
 
@@ -33,18 +32,18 @@ internal sealed class NavigationService : ObservableObject, INavigationService
         _viewModelProvider = viewModelProvider ?? throw new ArgumentNullException(nameof(viewModelProvider));
 
         // Default page to switch to when no page is specified.
-        CurrentPageIdentifier = HomePageViewModel.PageIdentifier;
+        CurrentPageIdentifier = AppPageIdentifier.Home.ToString();
     }
 
     /// <inheritdoc />
     public void NavigateTo(string pageIdentifier)
     {
         // If the new page differs from the current page ...
-        if (CurrentPageIdentifier != pageIdentifier)
-        {
-            // Switch page
-            SwitchPage(pageIdentifier, null);
-        }
+        if (CurrentPageIdentifier == pageIdentifier)
+            return;
+
+        // Switch page
+        SwitchPage(pageIdentifier, null);
     }
 
     /// <inheritdoc />
@@ -52,15 +51,15 @@ internal sealed class NavigationService : ObservableObject, INavigationService
         where TViewModel : IPageViewModel
     {
         // If the new page differs from the current page ...
-        if (CurrentPageIdentifier != pageIdentifier)
-        {
-            // Prepare the view model to be used explicitly for the new page.
-            TViewModel pageViewModel = _viewModelProvider.GetRequired<TViewModel>();
-            initViewModelAction.Invoke(pageViewModel);
+        if (CurrentPageIdentifier == pageIdentifier)
+            return;
 
-            // Switch page
-            SwitchPage(pageIdentifier, pageViewModel);
-        }
+        // Prepare the view model to be used explicitly for the new page.
+        TViewModel pageViewModel = _viewModelProvider.GetRequired<TViewModel>();
+        initViewModelAction.Invoke(pageViewModel);
+
+        // Switch page
+        SwitchPage(pageIdentifier, pageViewModel);
     }
 
     /// <summary>
