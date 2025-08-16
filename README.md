@@ -85,13 +85,100 @@ Do not confuse this with the "Core" or "Domain" layer in Clean Architecture. Unl
 Encapsulates functionality around specific business capabilities. Each feature is self-contained and usually follows a modular structure (e.g., data access, services, UI components related to that feature). Architecture within the feature is independent of the project.
 
 #### FeaturesInfrastructure
+Whenever an implementation is needed across multiple features, the question arises: is it business logic or infrastructure?
 
-TODO
+- If it’s business logic specific to a feature → keep it inside the feature.
+- If it’s infrastructure (e.g., HTTP client for a 3rd-party API, serialization helpers, authentication with that API, retry policies, etc.) → extract it into a separate infrastructure/service layer.
+
+The separation into `Features`, `FeaturesInfrastructure`, and `FeaturesShared` is similar to Clean Architecture’s `Application`, `Domain`, and `Infrastructure`. The idea is similar, see the dependency relations:
+
+- `Features` can depend on `FeaturesShared`.
+- `FeaturesInfrastructure` can depend on `FeaturesShared` as well.
+- `FeaturesShared` cannot depend on either.
+
+In this structure, the infrastructure layer only contains the implementation. Interfaces (contracts) are defined in the `FeaturesShared` folder.
 
 #### FeaturesShared
-Provides shared feature-level components, logic, or resources that are reused by multiple features.
+Reserve `FeaturesShared` only for feature-to-feature communication and infrastructure contracts. 
 
-TODO - requires to reevaluate dependency and write doc about it here
+If you mean utility code (helpers, extensions, base classes), don’t dump them in `FeaturesShared`. That folder usually ends up a junk drawer. Instead, use `Common` or `Core`.
+
+What about the feature-to-feature communication?  
+You want feature isolation, but reality forces some features to talk to each other. Features should not directly depend on each other. There are a couple of ways to handle this: 
+- Use Messages (Commands / Queries / Events); via [MediatR](https://github.com/LuckyPennySoftware/MediatR) or [Mediator](https://github.com/martinothamar/Mediator)
+- Shared Contracts / Interfaces; via `FeaturesShared` (see details below)
+
+You can create a shared folder that only contains:
+- DTOs used in cross-feature requests/responses
+- Command/Query/Event definitions
+- Interfaces for abstractions
+
+An example usage could look like this:
+##### Folder Layout
+```
+Features/
+   Customers/
+      CustomerService.cs
+   Orders/
+      OrderService.cs
+FeaturesShared/
+   Contracts/
+      ICustomerReader.cs
+      CustomerDto.cs
+```
+##### ICustomerReader.cs
+```cs
+public interface ICustomerReader
+{
+    CustomerDto? GetById(Guid id);
+}
+```
+##### CustomerDto.cs
+```cs
+public record CustomerDto(Guid Id, string Name, string Email);
+```
+##### CustomerService.cs
+```cs
+using FeaturesShared.Contracts;
+
+public class CustomerService : ICustomerReader
+{
+    private readonly AppDbContext _db;
+
+    public CustomerService(AppDbContext db)
+    {
+        _db = db;
+    }
+
+    public CustomerDto? GetById(Guid id)
+    {
+        var c = _db.Customers.Find(id);
+        return c == null ? null : new CustomerDto(c.Id, c.Name, c.Email);
+    }
+}
+```
+##### OrderService.cs
+```cs
+using FeaturesShared.Contracts;
+
+public class OrderService
+{
+    private readonly ICustomerReader _customers;
+    private readonly AppDbContext _db;
+
+    public OrderService(ICustomerReader customers, AppDbContext db)
+    {
+        _customers = customers;
+        _db = db;
+    }
+
+    public Guid CreateOrder(Guid customerId, string product)
+    {
+        var customer = _customers.GetById(customerId);
+        ...
+    }
+}
+```
 
 #### Pages
 Defines the UI pages or views, typically composed of features and shared components, representing user-facing application screens.
