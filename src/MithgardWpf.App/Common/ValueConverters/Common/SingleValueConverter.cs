@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Markup;
 
-namespace MithgardWpf.App.Common.ValueConvertors.Common;
+namespace MithgardWpf.App.Common.ValueConverters.Common;
 
 /// <summary>
 ///     A base value converter that allows direct XAML usage for a single value.

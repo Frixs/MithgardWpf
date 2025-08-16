@@ -1,10 +1,10 @@
 ﻿// Author: Tomáš Frixs
 
-using MithgardWpf.App.Common.ValueConvertors.Common;
+using MithgardWpf.App.Common.ValueConverters.Common;
 using System.Collections;
 using System.Globalization;
 
-namespace MithgardWpf.App.Common.ValueConvertors;
+namespace MithgardWpf.App.Common.ValueConverters;
 
 /// <summary>
 ///     Converter to transfer a collection into a bool based on having any items in it.<para/>
