@@ -17,15 +17,6 @@
 
 </div>
 
-## Technologies
-- [C# .NET](https://learn.microsoft.com/en-us/dotnet/)
-- [WPF](https://learn.microsoft.com/en-us/dotnet/desktop/wpf/)
-- [Community MVVM Toolkit](https://learn.microsoft.com/en-us/dotnet/communitytoolkit/mvvm/)
-- [Dependency Injection](https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection)
-- [Microsoft's Logging](https://learn.microsoft.com/en-us/dotnet/core/extensions/logging)
-- [NetArchTest](https://github.com/BenMorris/NetArchTest)
-- [xUnit](https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-csharp-with-xunit)
-
 ## Features
 - Project Structure
   - Ready-to-use folder organization for WPF projects
@@ -42,6 +33,15 @@
   - Logging based on `ILogger`
 - Testing
   - xUnit architectural unit tests
+
+## Technologies
+- [C# .NET](https://learn.microsoft.com/en-us/dotnet/)
+- [WPF](https://learn.microsoft.com/en-us/dotnet/desktop/wpf/)
+- [Community MVVM Toolkit](https://learn.microsoft.com/en-us/dotnet/communitytoolkit/mvvm/)
+- [Dependency Injection](https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection)
+- [Microsoft's Logging](https://learn.microsoft.com/en-us/dotnet/core/extensions/logging)
+- [NetArchTest](https://github.com/BenMorris/NetArchTest)
+- [xUnit](https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-csharp-with-xunit)
 
 ## Architecture
 One of the most popular architectural patterns for WPF is [MVVM](https://learn.microsoft.com/en-us/dotnet/architecture/maui/mvvm). This project follows it to maintain standard practices. To reduce some of the boilerplate code that MVVM usually requires, this project uses the MVVM Toolkit. Using the toolkit is optional, and it’s easy to remove if you prefer. The demonstration pages implemented show examples both with and without it. Overall, the toolkit helps keep the code clean and focused.
@@ -67,6 +67,7 @@ The main project is organized into several primary folders:
 - `Common`
 - `Core`
 - `Features`
+- `FeaturesInfrastructure`
 - `FeaturesShared`
 - `Pages`
 
@@ -82,6 +83,10 @@ Do not confuse this with the "Core" or "Domain" layer in Clean Architecture. Unl
 
 #### Features
 Encapsulates functionality around specific business capabilities. Each feature is self-contained and usually follows a modular structure (e.g., data access, services, UI components related to that feature). Architecture within the feature is independent of the project.
+
+#### FeaturesInfrastructure
+
+TODO
 
 #### FeaturesShared
 Provides shared feature-level components, logic, or resources that are reused by multiple features.
