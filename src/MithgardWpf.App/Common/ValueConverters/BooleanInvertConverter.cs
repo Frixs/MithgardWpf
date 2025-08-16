@@ -1,9 +1,9 @@
 ﻿// Author: Tomáš Frixs
 
-using MithgardWpf.App.Common.ValueConvertors.Common;
+using MithgardWpf.App.Common.ValueConverters.Common;
 using System.Globalization;
 
-namespace MithgardWpf.App.Common.ValueConvertors;
+namespace MithgardWpf.App.Common.ValueConverters;
 
 /// <summary>
 ///     Converter used for inverting boolean value.

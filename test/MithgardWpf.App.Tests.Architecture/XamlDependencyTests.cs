@@ -18,14 +18,20 @@ public class XamlDependencyTests
     #endregion
 
     [Theory]
-    [InlineData("MithgardWpf.App.Core", "MithgardWpf.App.Features")]
-    [InlineData("MithgardWpf.App.Core", "MithgardWpf.App.FeaturesShared")]
-    [InlineData("MithgardWpf.App.Core", "MithgardWpf.App.Pages")]
     [InlineData("MithgardWpf.App.Common", "MithgardWpf.App.Features")]
+    [InlineData("MithgardWpf.App.Common", "MithgardWpf.App.FeaturesInfrastructure")]
     [InlineData("MithgardWpf.App.Common", "MithgardWpf.App.FeaturesShared")]
     [InlineData("MithgardWpf.App.Common", "MithgardWpf.App.Pages")]
-    [InlineData("MithgardWpf.App.Features", "MithgardWpf.App.FeaturesShared")]
+    [InlineData("MithgardWpf.App.Core", "MithgardWpf.App.Features")]
+    [InlineData("MithgardWpf.App.Core", "MithgardWpf.App.FeaturesInfrastructure")]
+    [InlineData("MithgardWpf.App.Core", "MithgardWpf.App.FeaturesShared")]
+    [InlineData("MithgardWpf.App.Core", "MithgardWpf.App.Pages")]
+    [InlineData("MithgardWpf.App.Features", "MithgardWpf.App.FeaturesInfrastructure")]
     [InlineData("MithgardWpf.App.Features", "MithgardWpf.App.Pages")]
+    [InlineData("MithgardWpf.App.FeaturesInfrastructure", "MithgardWpf.App.Features")]
+    [InlineData("MithgardWpf.App.FeaturesInfrastructure", "MithgardWpf.App.Pages")]
+    [InlineData("MithgardWpf.App.FeaturesShared", "MithgardWpf.App.Features")]
+    [InlineData("MithgardWpf.App.FeaturesShared", "MithgardWpf.App.FeaturesInfrastructure")]
     [InlineData("MithgardWpf.App.FeaturesShared", "MithgardWpf.App.Pages")]
     public void Namespace_ShouldNotDependOnNamespace(string resideNamespace, string forbiddenNamespace)
     {
