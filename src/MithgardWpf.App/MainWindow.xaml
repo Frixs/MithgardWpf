@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:nav="clr-namespace:MithgardWpf.App.Core.Navigation.Views"
     xmlns:viewm="clr-namespace:MithgardWpf.App.Core.ViewModels"
-    Title="MainWindow"
+    Title="{Binding App.Title, Source={x:Static viewm:ViewModelLocator.Instance}}"
     Width="800"
     Height="450"
     WindowStartupLocation="CenterScreen"
