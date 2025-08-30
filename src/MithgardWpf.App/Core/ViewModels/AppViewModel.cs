@@ -2,6 +2,7 @@
 
 using MithgardWpf.App.Core.Navigation.Abstractions;
 using MithgardWpf.App.Core.ViewModels.Common;
+using System.Reflection;
 using System.Windows;
 
 namespace MithgardWpf.App.Core.ViewModels;
@@ -19,7 +20,12 @@ public sealed class AppViewModel : ObservableViewModel, IViewModel
     /// <summary>
     ///     Application's title that users can see in the app UI.
     /// </summary>
-    public string Title { get; private set; }
+    public string Title { get; private init; }
+
+    /// <summary>
+    ///     Application's current assembly version.
+    /// </summary>
+    public string Version { get; private init; }
 
     /// <summary>
     ///     Default constructor.
@@ -30,7 +36,12 @@ public sealed class AppViewModel : ObservableViewModel, IViewModel
     {
         Navigation = navigation ?? throw new ArgumentNullException(nameof(navigation));
 
-        Title = "Lorem Ipsum";
+        Title = "MithgardWpf Template";
+
+        Version = Assembly.GetEntryAssembly()?
+            .GetName()
+            .Version?
+            .ToString() ?? "Unknown";
     }
 
     /// <summary>
