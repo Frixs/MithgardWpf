@@ -18,6 +18,7 @@ public class XamlDependencyTests
     #endregion
 
     [Theory]
+    [InlineData("MithgardWpf.App.Common", "MithgardWpf.App.Core")]
     [InlineData("MithgardWpf.App.Common", "MithgardWpf.App.Features")]
     [InlineData("MithgardWpf.App.Common", "MithgardWpf.App.FeaturesInfrastructure")]
     [InlineData("MithgardWpf.App.Common", "MithgardWpf.App.FeaturesShared")]
@@ -33,6 +34,7 @@ public class XamlDependencyTests
     [InlineData("MithgardWpf.App.FeaturesShared", "MithgardWpf.App.Features")]
     [InlineData("MithgardWpf.App.FeaturesShared", "MithgardWpf.App.FeaturesInfrastructure")]
     [InlineData("MithgardWpf.App.FeaturesShared", "MithgardWpf.App.Pages")]
+    [InlineData("MithgardWpf.App.Pages", "MithgardWpf.App.FeaturesInfrastructure")]
     public void Namespace_ShouldNotDependOnNamespace(string resideNamespace, string forbiddenNamespace)
     {
         // Arrange
